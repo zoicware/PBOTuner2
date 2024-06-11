@@ -12,3 +12,6 @@ The script will get your number of cores and display a text box for each type - 
 **Not Recommended** you can also apply custom power limits (ppt tdc edc)
 
 Once you apply the script will create a scheduled task to run pbo2tuner at startup with your undervolt settings
+
+
+![image](https://github.com/zoicware/PBOTuner2/assets/118035521/4b24c5a4-2854-4184-9c6e-52f8f89c4e29)
