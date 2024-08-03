@@ -8,7 +8,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 $github = $false
 [reflection.assembly]::loadwithpartialname('System.Windows.Forms') | Out-Null 
-$msgBoxInput = [System.Windows.Forms.MessageBox]::Show('Install PBO Tuner?', 'zoicware', 'YesNo', 'Question')
+$msgBoxInput = [System.Windows.Forms.MessageBox]::Show('Install PBO Tuner? CANCEL TO UNINSTALL', 'zoicware', 'YesNoCancel', 'Question')
 
 switch ($msgBoxInput) {
 
@@ -24,6 +24,13 @@ switch ($msgBoxInput) {
     }
 
     'No' {}
+
+    'Cancel' {
+        sc.exe stop WinRing0_1_2_0 *>$null
+        Remove-item -Path 'C:\Program Files\PBOTuner' -Recurse -Force -ErrorAction  SilentlyContinue
+        Unregister-ScheduledTask -TaskName 'PBO Tuner' -Confirm:$false -ErrorAction  SilentlyContinue
+        exit
+    }
 
 }
 
